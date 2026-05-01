@@ -129,29 +129,28 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
     "restaurant/static",
 ]
 
 REST_FRAMEWORK ={
     "DEFAULT_RENDERER_CLASSES":[
         'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer.',
+        'rest_framework.renderers.BrowsableAPIRenderer',
         'rest_framework_xml.renderers.XMLRenderer',
         'rest_framework_yaml.renderers.YAMLRenderer',
     ],
     "DEFAULT_AUTHENTICATION_CLASSES":(
-        'rest_framework.authentication.AuthTokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     "PAGE_SIZE": '4',
     
-    "DEFAULT_FILTER_BACKENDS":{
+    "DEFAULT_FILTER_BACKENDS":[
         'rest_framework.filters.OrderingFilter',
         'rest_framework.filters.SearchFilter',
         'django_filters.rest_framework.DjangoFilterBackend',
-    }
+    ]
 }
 
 DJOSER = {
